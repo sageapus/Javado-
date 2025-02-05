@@ -13,7 +13,6 @@ public class TaskManager {
     public void addTask(String task) {
         tasks.add(task);
 
-        throw new UnsupportedOperationException("Implement this method!");
     }
 
     public List<String> listTasks() {

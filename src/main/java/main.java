@@ -6,6 +6,7 @@ public class main {
         TaskManager manager = new TaskManager();
         Scanner scanner = new Scanner(System.in);
 
+
         while (true) {
             System.out.println("\n=== Task Manager ===");
             System.out.println("1. Add Task");

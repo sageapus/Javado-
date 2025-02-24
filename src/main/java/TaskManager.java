@@ -2,20 +2,15 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 public class TaskManager {
-//    private static final Logger logger = Logger.getLogger(TaskManager.class.getName());
+//    private List<String> tasks; // hint: will change in iteration 3
+    private List<Task> tasks; // hint: will change in iteration 3
 
-    private List<String> tasks; // hint: will change in iteration 3
-//    private File file;
     public TaskManager() {
         // Initialize tasks list
         tasks = new ArrayList<>();
@@ -33,19 +28,26 @@ public class TaskManager {
 
 }
 
-    public void addTask(String task) {
+    public void addTask(Task task) {
          tasks.add(task);
 
     }
 
-    public List<String> listTasks() {
+    public List<Task> listTasks() {
         return tasks;
 
 //        throw new UnsupportedOperationException("Implement this method!");
     }
 
-    public void deleteTask(String task){
+    public void deleteTask(Task task) throws IllegalArgumentException{
 //        leave for iteration 4
+
+        if (!tasks.isEmpty()) {
+            tasks.remove(task);
+        } else {
+            throw new IllegalArgumentException("Task not found!");
+        }
+
     }
 
     public void exit() {
@@ -53,12 +55,21 @@ public class TaskManager {
         try {
             BufferedWriter writer=new BufferedWriter(new FileWriter("tasks.csv"));
 
-            for (String task : tasks){
+            for (Task task : tasks){
                 writer.write( task +"\n");}
             writer.close();
         } catch (IOException e) {
            throw new RuntimeException(e);
         }
     }
+    public void markTaskAsComplete(Task task){
+        if (tasks.contains(task)){
+            task.setComplete(true);
+        }
+    }
+    public void processMenuChoice(int menuChoice){
+        throw new IllegalArgumentException("Invalid menu option!");
+    }
 }
+
 
